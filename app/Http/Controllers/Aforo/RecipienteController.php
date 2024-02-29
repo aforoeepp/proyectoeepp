@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Aforo;
 
 use App\Http\Controllers\Controller;
-use App\Models\Aforo\Recipiente ;
+use App\Models\aforo\Recipiente ;
 use App\Models\aforo\Recipientedetalle;
 use Illuminate\Http\Request;
 
