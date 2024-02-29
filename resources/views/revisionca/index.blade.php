@@ -132,7 +132,7 @@
 
 @section('js')
     {{-- esto es para la tabla --}}
-     <script src="https://code.jquery.com/jquery-3.7.1.js" type="text/Javascript"></script> 
+     {{-- <script src="https://code.jquery.com/jquery-3.7.1.js" type="text/Javascript"></script>  --}}
 
     <!-- DataTables  & Plugins -->
      <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
