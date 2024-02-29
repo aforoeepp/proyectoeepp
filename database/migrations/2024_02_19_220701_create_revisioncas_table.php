@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('lecturaac');//lectura actual
             $table->string('consumoac');// consumo actual
             $table->string('promedio');// 
-            $table->string('causadenol');// consumo de no lectura
+            $table->string('causadenol')->nullable();// consumo de no lectura
             $table->string('nombre');
             $table->string('estrato');
             $table->string('direccion');
-            $table->string('nmedidor');//numero medidor
+            $table->string('nmedidor')->nullable();//numero medidor
             $table->string('estado');//numero medidor
-            $table->string('observacion');//numero medidor
+            $table->string('observacion')->default('');//numero medidor
             $table->timestamps();
         });
     }

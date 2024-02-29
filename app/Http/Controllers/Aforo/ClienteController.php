@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aforo;
 use App\Http\Controllers\Controller;
 use App\Models\aforo\Actividade;
 use App\Models\aforo\Category;
+use App\Models\aforo\Cliente;
 use App\Models\aforo\Ruta;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,17 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tipoaforo'=>'required' ,
+            'tiporesiduos'=>'required' ,
+            'nombre'=>'required' ,
+            'codigousuario'  =>'required|unique:clientes' ,
+            'correo'=>'required' 
+        ]);
+       
+        $cliente=Cliente::create($request->all()); 
+
+        return redirect()->route('aforo.cliente.create')->with('info', 'El cliente se creó con exito');
     }
 
     /**
