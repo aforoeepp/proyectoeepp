@@ -58,7 +58,8 @@ class HomeController extends Controller
         //la opcion cero es para mirar la lista
         if ($request->opc == '0') {
             $revisionca = Revisionca::where('ruta', $request->ruta)
-            ->orderBy('nombre', 'asc')->get();
+            ->where('estado','0')
+            ->orderBy('codigo', 'asc')->get();
             return response(json_encode($revisionca), 200)->header('content-type', 'text/plain');
         }
         // la opcion 1 es para mirar el seguimiento
@@ -72,7 +73,7 @@ class HomeController extends Controller
                                 CASE estado
                                 WHEN '0' THEN 'En revisión'
                                 WHEN '1' THEN 'Aplica'
-                                ELSE 'No aplica' END AS estado, observacion")->whereIn('estado', ['1','2'])
+                                ELSE 'No aplica' END AS estado, observacion")->whereIn('estado', ['1'])
                                 ->where('ruta', $request->ruta)->orderBy('updated_at', 'desc')->get();
             return response(json_encode($revisionca), 200)->header('content-type', 'text/plain');
         }

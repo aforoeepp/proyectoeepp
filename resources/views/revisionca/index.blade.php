@@ -150,7 +150,7 @@
     <!-- AdminLTE App -->
 
 
-    {{-- <script src="{{ asset('js/sweetalert2@11.js') }}"></script>  --}}
+    <script src="{{ asset('js/sweetalert2@11.js') }}"></script> 
     <script type="text/javascript">
         function load() {
             // $('.select2').select2();
@@ -269,7 +269,7 @@
 
         };
 
-        function updateseguimiento() {
+        function updateseguimiento() {           
             $.ajax({
                 url: "{{ route('revisionca.updateseguimiento') }}", ///actualizamos la ruta
                 method: 'get',
@@ -279,11 +279,12 @@
                     observacion: document.getElementById("mtobservacion").value
                 }
             }).done(function(res) {
-                if (res.respuesta) {
+                if (res.respuesta) {                    
                     mostrartablas();
                     $('#mconsolidado').modal('toggle');
                     mostrarmensaje('Correcto', res.mensaje);
                 } else {
+                    alert(res.mensaje);
                     mostrarmensaje('Error', res.mensaje);
                 }
             });
