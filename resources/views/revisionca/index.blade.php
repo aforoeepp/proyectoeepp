@@ -192,7 +192,7 @@
                     event_data += '<td>' + value.id + '</td>';                    
                     event_data += '<td>' + value.codigo + '</td>';
                     if(value.estado=='0'){
-                        event_data += '<td>' + value.nombre + '</td>';
+                        event_data += '<td>'+value.codigo+'|' + value.nombre +'|'+value.direccion+ '</td>';
                     }
                     if(value.estado=='1'){
                         event_data += '<td>' + value.nombre + ' <span class="fas fa-check-double"></span></td>';
@@ -337,7 +337,7 @@
                     event_data += '<tr>';                    
                     event_data += '<td>' + value.id + '</td>';
                     event_data += '<td>' + value.codigo + '</td>';
-                    event_data += '<td>' + value.nombre + '</td>';
+                    event_data += '<td>' + value.nombre +'</td>';
                     event_data += '<td>' + value.direccion + '</td>';
                     event_data += '<td>' + value.estado + '</td>';
                     event_data += '<td>' + value.observacion + '</td>';
