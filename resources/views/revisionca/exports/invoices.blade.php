@@ -15,6 +15,9 @@
         <th>direccion</th>
         <th>nmedidor</th>
         <th>estado</th>
+        <th>observacion</th>
+        <th>fecha creacion</th>
+        <th>fecha seguimiento</th>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +37,9 @@
             <td>{{ $invoice->direccion}}</td>
             <td>{{ $invoice->nmedidor }}</td>
             <td>{{ $invoice->estado }}</td>
+            <td>{{ $invoice->observacion}}</td>
+            <td>{{ $invoice->created_at}}</td>
+            <td>{{ $invoice->updated_at}}</td>
         </tr>
     @endforeach
     </tbody>
