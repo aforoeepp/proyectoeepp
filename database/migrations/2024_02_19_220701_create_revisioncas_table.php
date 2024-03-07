@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('nmedidor')->nullable();//numero medidor
             $table->string('estado');//numero medidor
+            $table->string('lecturar')->default('');//lectura real
             $table->string('observacion')->default('');//numero medidor
             $table->timestamps();
         });

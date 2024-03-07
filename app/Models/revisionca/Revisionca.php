@@ -9,7 +9,7 @@ class Revisionca extends Model
 {
     use HasFactory;
 
-    protected $fillable=['ruta', 'codigo','lecturaan','consumoan','lecturaac','consumoac','promedio','causadenol','nombre','estrato', 'direccion','nmedidor','estado','observacion'];
+    protected $fillable=['ruta', 'codigo','lecturaan','consumoan','lecturaac','consumoac','promedio','causadenol','nombre','estrato', 'direccion','nmedidor','estado','lecturar','observacion'];
     //protected $guarded = [];
 
     /*public function scopeFilter($query, $filters){

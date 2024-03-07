@@ -89,14 +89,19 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
                                 <span class="help-block text-muted small-font"><strong>Revisión</strong></span>
-                                <select class="form-control select2" aria-label="Default select example" id="lrevision">
-                                    <option value="">Ninguno</option>
+                                <select class="form-control select2" aria-label="Default select example" id="lrevision" onchange="accionrevision()">
+                                    <option value="0">Ninguno</option>
                                     <option value="1">Aplica</option>
                                     <option value="2">No aplica</option>
                                 </select>
                             </div>
 
-                            <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-12" id="mlfllecturareal">
+                                <span class="help-block text-muted small-font"><strong>Lectura real</strong></span>
+                                <input id="mtlecturar" class="form-control" type="number">
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-12" id="mlflobservaciones">
                                 <span class="help-block text-muted small-font"><strong>Observación</strong></span>
                                 <textarea name="mtobservacion" id="mtobservacion" rows="5" class="form-control"
                                     placeholder="Escirbir una observación clara de lo encontrado"></textarea>
@@ -260,11 +265,30 @@
             $("a.bseleccionar").click(function() {
                 //$('#meliminarmovimiento').modal('show');
                 $("#mtid").val($(this).parents("tr").find("td").eq(0).html());
-                $("#mtnombre").val($(this).parents("tr").find("td").eq(2).html());
+                $.ajax({
+                url: "{{ route('revisionca.mostrarlistaderutas') }}", ///actualizamos la ruta
+                method: 'get',
+                data: {
+                    id: $("#mtid").val(),
+                    opc: 2
+                }
+            }).done(function(res) {
+                   var informacion = JSON.parse(res);
+                   $("#mtnombre").val(informacion[0].nombre);
+                   $("#mtdireccion").val(informacion[0].direccion);
+                   $("#lrevision").val(informacion[0].estado);
+                   $("#mtlecturar").val(informacion[0].lecturar);
+                   document.getElementById("mtobservacion").value = informacion[0].observacion;                  
+                    $('#mconsolidado').modal('show');               
+            });
+
+
+
+                /*$("#mtnombre").val($(this).parents("tr").find("td").eq(2).html());
                 $("#mtdireccion").val($(this).parents("tr").find("td").eq(3).html());
                 $("#lrevision").val('');
                 document.getElementById("mtobservacion").value = '';
-                $('#mconsolidado').modal('show');
+                $('#mconsolidado').modal('show');*/
             });
 
         };
@@ -276,6 +300,7 @@
                 data: {
                     id: $("#mtid").val(),
                     estado: $("#lrevision").val(),
+                    lecturar: $("#mtlecturar").val(),
                     observacion: document.getElementById("mtobservacion").value
                 }
             }).done(function(res) {
@@ -357,7 +382,23 @@
             $("a.bseguimiento").click(function() {
                 //$('#meliminarmovimiento').modal('show');
                 $("#mtid").val($(this).parents("tr").find("td").eq(0).html());
-                $("#mtnombre").val($(this).parents("tr").find("td").eq(2).html());
+                $.ajax({
+                url: "{{ route('revisionca.mostrarlistaderutas') }}", ///actualizamos la ruta
+                method: 'get',
+                data: {
+                    id: $("#mtid").val(),
+                    opc: 2
+                }
+            }).done(function(res) {
+                var informacion = JSON.parse(res);
+                   $("#mtnombre").val(informacion[0].nombre);
+                   $("#mtdireccion").val(informacion[0].direccion);
+                   $("#lrevision").val(informacion[0].estado);
+                   $("#mtlecturar").val(informacion[0].lecturar);
+                   document.getElementById("mtobservacion").value = informacion[0].observacion;    
+                    $('#mconsolidado').modal('show');               
+            });
+              /*  $("#mtnombre").val($(this).parents("tr").find("td").eq(2).html());
                 $("#mtdireccion").val($(this).parents("tr").find("td").eq(3).html());
                 if ($(this).parents("tr").find("td").eq(4).html() == 'Aplica') {
                     $("#lrevision").val('1');
@@ -365,8 +406,8 @@
                 if ($(this).parents("tr").find("td").eq(4).html() == 'No aplica') {
                     $("#lrevision").val('2');
                 }
-                document.getElementById("mtobservacion").value = $(this).parents("tr").find("td").eq(5).html();
-                $('#mconsolidado').modal('show');
+                document.getElementById("mtobservacion").value = $(this).parents("tr").find("td").eq(5).html();*/
+               
             });
 
         };
@@ -404,6 +445,24 @@
                     // },
                 ]
             });
+        }
+
+        // con este mostramos las acciones despues de darle en revision
+        function accionrevision(){
+          // console.log(  $("#lrevision").val());  
+          if($("#lrevision").val()=='2'){
+              $("#mtlecturar").val('0');
+              document.getElementById('mtobservacion').value="No aplica";
+
+              document.getElementById('mlfllecturareal').style.display='none';
+              document.getElementById('mlflobservaciones').style.display='none';
+          }else{
+              $("#mtlecturar").val('');
+              document.getElementById('mtobservacion').value="";
+
+              document.getElementById('mlfllecturareal').style.display='';
+              document.getElementById('mlflobservaciones').style.display='';
+          }
         }
     </script>
 

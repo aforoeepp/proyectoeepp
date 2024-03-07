@@ -18,7 +18,7 @@ class RevisioncaExport implements FromView
                                 CASE estado
                                     WHEN '0' THEN 'En revisión'
                                      WHEN '1' THEN 'Aplica'
-                                     ELSE 'No aplica' END AS estado, observacion,created_at,updated_at")->get()
+                                     ELSE 'No aplica' END AS estado,lecturar, observacion,created_at,updated_at")->get()
         ]);
     }
 }

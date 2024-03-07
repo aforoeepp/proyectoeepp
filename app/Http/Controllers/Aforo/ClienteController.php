@@ -36,6 +36,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        date_default_timezone_set('America/Lima'); 
         $request->validate([
             'tipoaforo'=>'required' ,
             'tiporesiduos'=>'required' ,
@@ -60,9 +61,12 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $categories = Category::pluck('name', 'id'); // esto es para pasarle a laravel collection  
+        $actividades = Actividade::pluck('name', 'id'); // esto es para pasarle a laravel collection  
+        $rutas = Ruta::pluck('name', 'id'); 
+        return view('aforo.cliente.edit', compact('categories', 'actividades', 'rutas'));
     }
 
     /**

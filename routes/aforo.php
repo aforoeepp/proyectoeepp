@@ -49,3 +49,4 @@ Route::put('/aforo/actividade/update/{actividade}', [ActividadeController::class
 //rutas de los clientes
 Route::get('/aforo/cliente/create', [ClienteController::class,'create'])->name('aforo.cliente.create');
 Route::post('/aforo/cliente/store', [ClienteController::class,'store'])->name('aforo.cliente.store');
+Route::get('/aforo/cliente/edit', [ClienteController::class,'edit'])->name('aforo.cliente.edit');

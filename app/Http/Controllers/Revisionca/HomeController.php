@@ -77,23 +77,29 @@ class HomeController extends Controller
                                 ->where('ruta', $request->ruta)->orderBy('updated_at', 'desc')->get();
             return response(json_encode($revisionca), 200)->header('content-type', 'text/plain');
         }
+         // la opcion 2 es para traer un seguimiento
+         if ($request->opc == '2') {           
+             $revisionca = Revisionca::selectRaw("nombre,                                   
+                                 direccion, 
+                                 estado, lecturar, observacion")->where('id', $request->id)->get();
+             return response(json_encode($revisionca), 200)->header('content-type', 'text/plain');
+         }
     }
 
     public function updateseguimiento(Request $request){
-      /*  $request->validate([
-            'revision'=>'required',           
-             'observacion'=>"required"  //esta es otra forma
-         ] );*/
+        date_default_timezone_set('America/Lima');  
          $data = [];
          try {  
             $request->validate([
-                'estado'=>'required',           
+                'estado'=>'required',    
+                'lecturar'=>'required',       
                  'observacion'=>"required"  //esta es otra forma
              ] );        
 
              Revisionca::where('id', $request->id)
                  ->update([
                      'estado' => $request->estado,
+                     'lecturar' => $request->lecturar,
                      'observacion' => $request->observacion
                 ]);
 

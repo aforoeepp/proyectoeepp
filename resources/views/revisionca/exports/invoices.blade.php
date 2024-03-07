@@ -15,6 +15,7 @@
         <th>direccion</th>
         <th>nmedidor</th>
         <th>estado</th>
+        <th>lecturar</th>
         <th>observacion</th>
         <th>fecha creacion</th>
         <th>fecha seguimiento</th>
@@ -37,6 +38,7 @@
             <td>{{ $invoice->direccion}}</td>
             <td>{{ $invoice->nmedidor }}</td>
             <td>{{ $invoice->estado }}</td>
+            <td>{{ $invoice->lecturar}}</td>
             <td>{{ $invoice->observacion}}</td>
             <td>{{ $invoice->created_at}}</td>
             <td>{{ $invoice->updated_at}}</td>
