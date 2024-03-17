@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 //rutas de aforo
 Route::get('/aforo/firma', [AforoController::class,'firma'])->name('aforo.firma');
 Route::get('/aforo/firmados', [AforoController::class,'firmados'])->name('aforo.firmados');
+Route::get('/aforo/index', [AforoController::class,'index'])->name('aforo.index');
 
 //rutas de recipiente
 Route::get('/aforo/recipiente/index', [RecipienteController::class,'index'])->name('aforo.recipiente.index');
@@ -50,3 +51,5 @@ Route::put('/aforo/actividade/update/{actividade}', [ActividadeController::class
 Route::get('/aforo/cliente/create', [ClienteController::class,'create'])->name('aforo.cliente.create');
 Route::post('/aforo/cliente/store', [ClienteController::class,'store'])->name('aforo.cliente.store');
 Route::get('/aforo/cliente/edit', [ClienteController::class,'edit'])->name('aforo.cliente.edit');
+Route::get('/aforo/cliente/mostrarlistadeclientes', [ClienteController::class,'mostrarlistadeclientes'])->name('aforo.cliente.mostrarlistadeclientes');//ruta para mostrar cliente
+Route::post('/aforo/cliente/update', [ClienteController::class,'update'])->name('aforo.cliente.update');

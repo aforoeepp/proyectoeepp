@@ -69,12 +69,41 @@ class ClienteController extends Controller
         return view('aforo.cliente.edit', compact('categories', 'actividades', 'rutas'));
     }
 
+    //listar clientes por api
+    public function mostrarlistadeclientes(Request $request){
+        //la opcion cero es para listar un solo cliente
+        if ($request->opc == '0') {
+            $cliente = Cliente::where('codigousuario', $request->codigousuario)->get();
+            return response(json_encode($cliente), 200)->header('content-type', 'text/plain');
+        }
+
+        //la opcion 1 es para buscar un usuario por nombre
+        if ($request->opc == '1') {
+            $cliente = Cliente::where('nombre', 'like',"%{$request->nombre}%" )->get();
+            return response(json_encode($cliente), 200)->header('content-type', 'text/plain');
+        }
+        
+    }
+
+
     /**
-     * Update the specified resource in storage.
+     * Actualizar cliente en la base de datos
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        date_default_timezone_set('America/Lima'); 
+        $request->validate([
+            'tipoaforo'=>'required' ,
+            'tiporesiduos'=>'required' ,
+            'nombre'=>'required' ,
+            'codigousuario'  =>'required' ,
+            'correo'=>'required' 
+        ]);
+
+        $cliente = Cliente::where('codigousuario', $request->codigousuario);
+        $cliente->update($request->except(['_token']) ); //con este actualizamos el usuario
+
+        return redirect()->route('aforo.cliente.edit')->with('info', 'El usuario se actualizó con exito');
     }
 
     /**

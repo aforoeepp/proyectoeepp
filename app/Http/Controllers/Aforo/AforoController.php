@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Aforo;
 
 use App\Http\Controllers\Controller;
+use App\Models\aforo\Ruta;
 use Illuminate\Http\Request;
 
 class AforoController extends Controller
@@ -11,8 +12,9 @@ class AforoController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {      // $revisionca=Revisionca::select('ruta')->groupBy('ruta')->orderBy('ruta', 'asc')->get(); 
+        $rutas= Ruta::get();
+        return view('aforo.index', compact('rutas'));
     }
 
     /**

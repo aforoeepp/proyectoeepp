@@ -316,6 +316,12 @@ return [
         ], 
         ['header' => 'Aforo'],  
         [
+            'text'        => 'Aforar',
+            'route'         => 'aforo.index',
+            'icon'        => 'fas fa-file-export fa-fw',  
+          //  'can'  => 'admin.home'          
+        ], 
+        [
             'text'        => 'Firma',
             'route'         => 'aforo.firma',
             'icon'        => 'fas fa-file-export fa-fw',  
