@@ -18,6 +18,7 @@ class RevisioncaImport implements ToModel, WithBatchInserts, WithChunkReading,Wi
     public function model(array $row)
     {
         return new Revisionca([
+            'periodo'     => $row['periodo'],
             'ruta'     => $row['ruta'],
              'codigo'    => $row['codigo'], 
              'lecturaan'    => $row['lecturaan'], 

@@ -10,6 +10,7 @@
 
     <div class=" form-inline">
         <div class="form-group mb-2 mr-2  ">
+            <label id="lperiodo" hidden></label>
             <label class="px-2">Ruta</label>
             <select class="form-control select2" id="lrutas" name="lrutas" onchange="mostrartablas()">
                 <option value=''>Seleccione una ruta</option>
